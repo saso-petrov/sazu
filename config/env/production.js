@@ -7,11 +7,11 @@ module.exports = {
     certificate: './config/sslcerts/cert.pem',
     caBundle: './config/sslcerts/cabundle.crt'
   },
-  port: process.env.PORT || 8443,
+  port: process.env.PORT || 3005,
   // Binding to 127.0.0.1 is safer in production.
   host: process.env.HOST || '0.0.0.0',
   db: {
-    uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/mean',
+    uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/sazu',
     options: {
       user: '',
       pass: ''
@@ -63,14 +63,14 @@ module.exports = {
     sandbox: false
   },
   mailer: {
-    from: process.env.MAILER_FROM || 'MAILER_FROM',
-    options: {
-      service: process.env.MAILER_SERVICE_PROVIDER || 'MAILER_SERVICE_PROVIDER',
-      auth: {
-        user: process.env.MAILER_EMAIL_ID || 'MAILER_EMAIL_ID',
-        pass: process.env.MAILER_PASSWORD || 'MAILER_PASSWORD'
+      from: process.env.MAILER_FROM || 'saso.petrov@gmail.com',
+      options: {
+          service: process.env.MAILER_SERVICE_PROVIDER || 'Gmail',
+          auth: {
+              user: process.env.MAILER_EMAIL_ID || 'saso.petrov@gmail.com',
+              pass: process.env.MAILER_PASSWORD || 'Nap00rno'
+          }
       }
-    }
   },
   seedDB: {
     seed: process.env.MONGO_SEED === 'true',

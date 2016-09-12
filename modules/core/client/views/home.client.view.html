@@ -1,84 +1,233 @@
-<section>
-  <div class="jumbotron text-center">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
-        <img alt="MEAN.JS" class="img-responsive text-center" src="modules/core/client/img/brand/logo.png" />
-      </div>
+<section ng-init="find()">
+    <img src="/modules/core/client/img/brand/hometop.png" class="img-responsive" alt="SAZU"/>
+
+    <!--
+
+        {{noofdays}}
+        {{yearNow}}
+        {{monthNow}}
+        {{dayNow}}
+        -->
+
+    <table class="calendar hidden-xs">
+        <tr>
+            <td class="title">Koledar dogodkov:</td>
+            <td><i class="fa fa-angle-left" style="color:#ff9c00;font-weight:bold;cursor:pointer"
+                   ng-click="changeCal(-1)"></i>&nbsp;&nbsp;&nbsp;{{months[monthNow-1]}}&nbsp;&nbsp;&nbsp;<i
+                    class="fa fa-angle-right" style="color:#ff9c00;font-weight:bold;cursor:pointer"
+                    ng-click="changeCal(1)"></i></td>
+            <td ng-repeat="day in getDays(noofdays) track by $index">
+                <span ng-show="exists(yearNow+'-'+((monthNow < 10) ? ('0' + monthNow) : monthNow) +'-'+ (($index < 10) ? ('0' + $index) : $index))"
+                      style="color:#ff9c00;cursor:pointer">{{$index + 1}}</span>
+                <span ng-show="!exists(yearNow+'-'+((monthNow < 10) ? ('0' + monthNow) : monthNow) +'-'+ (($index < 10) ? ('0' + $index) : $index))">{{$index + 1}}</span>
+            </td>
+        </tr>
+    </table>
+
+
+    <style>
+        select {
+            margin: 0;
+            background: #1162b2;
+            color: white;
+            border: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.36);
+            outline: none;
+            display: inline-block;
+            font-size: 17px;
+            font-style: italic;
+            padding: 5px 15px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            cursor: pointer;
+            width: 60px;
+            -webkit-border-radius: 0px;
+            -moz-border-radius: 0px;
+            border-radius: 0px;
+        }
+
+        /* Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding. */
+        @media screen and (-webkit-min-device-pixel-ratio: 0) {
+            select {
+                padding-right: 18px
+            }
+        }
+
+        label {
+            position: relative
+        }
+
+        label:after {
+            content: "\f078";
+            font-family: "FontAwesome";
+            font-size: 11px;
+            color: #ff9c00;
+            right: 4px;
+            top: 10px;
+            padding: 0 0 2px;
+            position: absolute;
+            pointer-events: none;
+        }
+
+        label:before {
+            content: '';
+            right: 4px;
+            top: 0px;
+            width: 23px;
+            height: 18px;
+            background: transparent;
+            position: absolute;
+            pointer-events: none;
+            display: block;
+        }
+    </style>
+    <div class="hidden-lg" style="background:#1162b2;padding:10px;overflow:hidden;color:white;">
+        Koledar dogodkov:<br/>
+
+        <div style="float:left;padding-right:20px">
+            <label>
+                <select id="international1">
+                    <option value="tests" selected="selected">DD</option>
+                    <option value="tests.au">Option 1</option>
+                    <option value="tests.br/">Option 2</option>
+                    <option value="tests">Option 3</option>
+                </select>
+            </label></div>
+        <div style="float:left;padding-right:20px">
+            <label>
+                <select id="international2">
+                    <option value="tests" selected="selected">MM</option>
+                    <option value="tests.au">Option 1</option>
+                    <option value="tests.br/">Option 2</option>
+                    <option value="tests">Option 3</option>
+                </select>
+            </label></div>
+        <div style="float:left;padding-right:20px;">
+
+            <label>
+                <select id="international3">
+                    <option value="tests" selected="selected">LL</option>
+                    <option value="tests.au">Option 1</option>
+                    <option value="tests.br/">Option 2</option>
+                    <option value="tests">Option 3</option>
+                </select>
+            </label>
+        </div>
+        <button type="submit" style="
+        width:40px;
+        height:40px;
+        background: #ff9c00;
+        border:0;
+        border-radius:20px;
+        font-size: 24px;
+        color:#262626
+        "><i class="fa fa-angle-right"></i></button>
     </div>
-    <br>
-    <div class="row">
-      <p class="lead">
-        Open-Source Full-Stack Solution For MEAN Applications
-      </p>
+
+
+    <div style="height: 550px" class="hidden-xs ">
+        <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+            <div uib-slide ng-repeat="slide in slides" index="$index" style="height:500px">
+                <img ng-src="{{slide.image[0].destination}}{{slide.image[0].file}}" class="carousel-img"
+                     ng-class="{'portrait': slide.image[0].orientation == 'portrait'}">
+
+                <div class="carousel-caption">
+                    V FOKUSU
+                    <br/><br/>
+                    <a ui-sref="events.view({ eventId: slide._id })"><h4>{{slide.title}}</h4></a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="row">
-      <p>
-        <a class="btn btn-primary btn-lg" href="http://meanjs.org" target="_blank">Learn more</a>
-      </p>
+
+    <div class="hidden-lg" style="height:430px;margin-top:30px;">
+        <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+            <div uib-slide ng-repeat="slide in slides" index="$index"  style="height:410px;">
+                <img ng-src="{{slide.image[0].destination}}{{slide.image[0].file}}" class="carousel-img"
+                     ng-class="{'portrait': slide.image[0].orientation == 'portrait'}">
+                <div class="carousel-caption">
+                    V FOKUSU
+                    <br/><br/>
+                    <a ui-sref="events.view({ eventId: slide._id })"><h4>{{slide.title}}</h4></a>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-  <div>
-    <h2>Congrats! You've configured and run the sample application.</h2>
-    <p>MEAN.JS is a web application boilerplate, which means you should start changing everything :-)</p>
-    <p>This sample application tracks users and articles.</p>
-    <ul>
-      <li>
-        Click
-        <em>Sign Up</em> to get started.
-      </li>
-      <li>
-        Configure your app to work with your social accounts, by editing the
-        <em>/config/env/*.js</em> files.
-      </li>
-      <li>
-        Edit your users module.
-      </li>
-      <li>
-        Add new CRUD modules.
-      </li>
-      <li>
-        Have fun...
-      </li>
-    </ul>
-  </div>
-  <div class="row">
-    <div class="col-md-3">
-      <h2><strong>M</strong>ongoDB</h2>
-      <p><a target="_blank" href="http://mongodb.org/">MongoDB</a> is a NoSQL database. MongoDB's <a target="_blank" href="http://docs.mongodb.org/manual/">great manual</a> is the place to get started with NoSQL and MongoDB.</p>
+
+
+
+    <div style="width:100%;text-align: center;font-size:34px;font-family:'Domine';color: #383838;padding:0 0 30px 0">
+        Novice in dogodki
     </div>
-    <div class="col-md-3">
-      <h2><strong>E</strong>xpress</h2>
-      <p><a target="_blank" href="http://expressjs.com/"> Express</a> is a NodeJS server-side application web framework. Check out <a target="_blank" href="http://expressjs.com/4x/api.html">The ExpressJS API reference for more information</a> or <a target="_blank" href="http://stackoverflow.com/questions/8144214/learning-express-for-node-js">StackOverflow</a> for more info.</p>
+
+    <div class="list-group">
+        <div class="col-lg-6 col-xs-12 listhome" ng-repeat="event in vm.events | limitTo: 4" ui-sref="events.view({ eventId: event._id })"
+             >
+            <img ng-src="{{event.image[0].destination}}{{event.image[0].file}}" class="img-responsive">
+            <span style="display:block;padding-top:20px;font-family: 'Source Sans Pro';
+  font-size: 17px;
+  letter-spacing: 1.5px;
+  color: #383838;">DOGODKI</span>
+            <h4 ng-bind="event.title"></h4>
+        </div>
     </div>
-    <div class="col-md-3">
-      <h2><strong>A</strong>ngularJS</h2>
-      <p><a target="_blank" href="http://angularjs.org/">AngularJS</a> is client-side web application framework. The <a target="_blank" href="http://www.thinkster.io/">Thinkster Popular Guide</a> and <a target="_blank" href="https://egghead.io/">Egghead Videos</a> are great resources.</p>
+
+
+    <!--    <div uib-datepicker ng-model="dt" class="well well-sm" template-url="template/alert/alertxx.html"></div>
+
+
+        <!--
+        <json-tree json='jsonData'></json-tree>
+        <pre style="background-color: rgba(236, 255, 220, 0.47);"><code>{{jsonData | json}}</code></pre>
+        <pre>
+        {{vm.menu | json}}
+            </pre> -->
+    <!--
+    <div class="page-header">
+        <h1>Tournaments</h1>
     </div>
-    <div class="col-md-3">
-      <h2><strong>N</strong>ode.js</h2>
-      <p><a target="_blank" href="http://nodejs.org/">Node.js</a> is a JavaScript run-time, popular for being a web server platform. Node's website and this <a target="_blank" href="http://stackoverflow.com/questions/2353818/how-do-i-get-started-with-node-js">stackOverflow thread</a> offer excellent starting points to get to grasps with node.</p>
+    <div class="page-header">
+        <h2>Live</h2>
     </div>
-  </div>
-  <div class="well">
-    <h2>MEAN.JS Documentation</h2>
-    <p>
-      Once you're familiar with the foundation technology, check out the MEAN.JS Documentation:
-      <ul>
-        <li><a target="_blank" href="http://meanjs.org/docs.html">MEAN.JS Documentation</a>
-        </li>
-        <!-- <li><a target="_blank" href="http://meanjs.org/generator.html">Yeoman Generator</a>
-				</li> -->
-        <li><a target="_blank" href="http://meanjs.org/modules.html">Modules</a>
-        </li>
-        <li><a target="_blank" href="http://meanjs.org/changelog.html">Changelog</a>
-        </li>
-        <li><a target="_blank" href="http://meanjs.org/community.html">Community</a>
-        </li>
-        <li><a target="_blank" href="http://blog.meanjs.org">Blog</a>
-        </li>
-      </ul>
-    </p>
-  </div>
-  <br>Enjoy &amp; Keep Us Updated,
-  <br>The MEAN.JS Team.
+    <div class="list-group">
+        <a ng-repeat="event in vm.events" ui-sref="route1({ eventId: event.slug })" class="list-group-item"
+           ng-show="event.datefrom < now && event.dateto > now;">
+            <h4 class="list-group-item-heading" ng-bind="event.title"></h4>
+            <small class="list-group-item-text">
+                <span ng-bind="event.datefrom | date:'mediumDate'"></span> - <span
+                    ng-bind="event.dateto | date:'mediumDate'"></span>
+            </small>
+        </a>
+    </div>
+    <div class="page-header">
+        <h2>Coming</h2>
+    </div>
+    <div class="list-group">
+        <a ng-repeat="event in vm.events" ui-sref="route1({ eventId: event.slug })" class="list-group-item"
+           ng-show="event.datefrom> now">
+            <h4 class="list-group-item-heading" ng-bind="event.title"></h4>
+            <small class="list-group-item-text">
+                <span ng-bind="event.datefrom | date:'mediumDate'"></span> - <span
+                    ng-bind="event.dateto | date:'mediumDate'"></span>
+            </small>
+        </a>
+    </div>
+
+    <div class="page-header">
+        <h2>Past</h2>
+    </div>
+    <div class="list-group">
+        <a ng-repeat="event in vm.events" ui-sref="route1({ eventId: event.slug })" class="list-group-item"
+           ng-show="event.datefrom< now && event.dateto < now">
+            <h4 class="list-group-item-heading" ng-bind="event.title"></h4>
+            <small class="list-group-item-text">
+                <span ng-bind="event.datefrom | date:'mediumDate'"></span> - <span
+                    ng-bind="event.dateto | date:'mediumDate'"></span>
+            </small>
+        </a>
+    </div>
+    -->
+
+
 </section>

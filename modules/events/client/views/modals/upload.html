@@ -1,0 +1,35 @@
+<script type="text/javascript" src="/lib/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="/lib/jquery/dist/jquery.form.min.js"></script>
+
+<script type="text/javascript">
+    $('#myForm')
+            .ajaxForm({
+                url : '/api/events/uploadPic', // or whatever
+                dataType : 'json',
+                success : function (response) {
+                    item_url = response.destination + response.filename;
+                    var args = top.tinymce.activeEditor.windowManager.getParams();
+                    win = (args.window);
+                    input = (args.input);
+                    win.document.getElementById(input).value = item_url;
+                    top.tinymce.activeEditor.windowManager.close();
+                }
+            })
+    ;
+</script>
+<form id="myForm" action="/api/events/uploadPic" method="post" enctype="multipart/form-data"
+      style="overflow:hidden">
+    <input name="image" type="file">
+    <input type="submit"></form>
+
+<!--
+        <?php
+$carpeta_ficheros = 'uploads/';
+$directorio = opendir($carpeta_ficheros); // Opens Folder
+while ($fichero = readdir($directorio)) { // reads every file
+if (!is_dir($fichero)){ // Omits the folders
+echo "<div class='fichero' data-src='".$carpeta_ficheros.$fichero."'>".$fichero."</div>";
+}
+}
+?>
+-->

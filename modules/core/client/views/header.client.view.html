@@ -1,50 +1,117 @@
 <div class="container" ng-controller="HeaderController as vm">
-  <div class="navbar-header">
-    <button class="navbar-toggle" type="button" ng-click="vm.isCollapsed = !vm.isCollapsed">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    <a ui-sref="home" class="navbar-brand">MEAN.JS</a>
-  </div>
-  <nav class="navbar-collapse" uib-collapse="!vm.isCollapsed" role="navigation">
-    <ul class="nav navbar-nav" ng-if="vm.menu.shouldRender(vm.authentication.user);">
-      <li ng-repeat="item in vm.menu.items | orderBy: 'position'" ng-if="item.shouldRender(vm.authentication.user);" ng-switch="item.type" ng-class="{ dropdown: item.type === 'dropdown' }" ui-sref-active="active" class="{{item.class}}" uib-dropdown="item.type === 'dropdown'">
-        <a ng-switch-when="dropdown" class="dropdown-toggle" uib-dropdown-toggle role="button">{{::item.title}}&nbsp;<span class="caret"></span></a>
-        <ul ng-switch-when="dropdown" class="dropdown-menu">
-          <li ng-repeat="subitem in item.items | orderBy: 'position'" ng-if="subitem.shouldRender(vm.authentication.user);">
-            <a ui-sref="{{subitem.state}}" ng-bind="subitem.title"></a>
-          </li>
+
+    <div class="navbar-header">
+        <button class="navbar-toggle" type="button" ng-click="vm.isCollapsed = !vm.isCollapsed">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+
+        <a ui-sref="home" class="navbar-brand hidden-xs"><img src="/modules/core/client/img/brand/logo.png" alt="SAZU"/></a>
+    </div>
+
+    <nav class="navbar-collapse" uib-collapse="!vm.isCollapsed" role="navigation" ng-if="!vm.authentication.user">
+        <ul class="nav navbar-nav" ng-repeat="sazu in sazuMenu">
+            <li>
+                <a ng-click="toggleOSazu(sazu.no)" style="cursor:pointer;" ng-bind-html="sazu.name|unsafe"></a>
+                <div ng-show="isdivOpen[sazu.no]" class="row"
+                     style="position:absolute;padding:10px 0;background-color: #ffffff;box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.13);">
+                    <ul ng-repeat="item in sazu['children']" style="list-style: none;padding:0 20px;width:340px;">
+                        <li style="font-size: 14px;color:#383838">
+                            <a ng-bind="item.name" style="font-size: 17px;color:#383838;cursor:pointer;" class="submenu"></a>
+                            <ul style="list-style: none;">
+                                <li ng-repeat="subitem in item['children']">
+                                    <a ng-bind="subitem.name" style="font-size: 14px;color:#383838;cursor:pointer;" class="submenu"></a>
+                                    <ul  style="list-style: none;">
+                                        <li ng-repeat="subsubitem in subitem['children']">
+                                            <a ng-bind="subsubitem.name" style="font-size: 14px;color:#383838;cursor:pointer;" class="submenu"></a>
+                                            <ul>
+                                                <li ng-repeat="ssubsubitem in subsubitem['children']">
+                                                    <a ng-bind="ssubsubitem.name"></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <!--
+            <li>
+                <a href="/o-sazu/">
+                    ČLANI IN ZNANSTVENI<br/> SODELAVCI
+                </a>
+            </li>
+            <li>
+                <a href="/o-sazu/">
+                    PROGRAMI IN<br/> AKTIVNOSTI
+                </a>
+            </li>
+            <li>
+                <a href="/o-sazu/">MEDNARODNO<br/> SODELOVANJE</a>
+            </li>
+            <li>
+                <a href="/o-sazu/">BIBLIOTEKA<br/>&nbsp;</a>
+            </li>
+            <li>
+                <a href="/o-sazu/">PUBLIKACIJE<br/> IN ZBIRKE</a>
+            </li>
+            <li>
+                <a href="/o-sazu/">DOGODKI<br/>&nbsp;</a>
+            </li>
+            -->
         </ul>
-        <a ng-switch-default ui-sref="{{item.state}}" ng-bind="item.title"></a>
-      </li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right" ng-hide="vm.authentication.user">
-      <li ui-sref-active="active">
-        <a ui-sref="authentication.signup">Sign Up</a>
-      </li>
-      <li class="divider-vertical"></li>
-      <li ui-sref-active="active">
-        <a ui-sref="authentication.signin">Sign In</a>
-      </li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right" ng-show="vm.authentication.user">
-      <li class="dropdown" uib-dropdown>
-        <a class="dropdown-toggle user-header-dropdown-toggle" uib-dropdown-toggle role="button">
-          <img ng-src="{{vm.authentication.user.profileImageURL}}" alt="{{vm.authentication.user.displayName}}" class="header-profile-image" />
-          <span ng-bind="vm.authentication.user.displayName"></span> <b class="caret"></b>
-        </a>
-        <ul class="dropdown-menu" role="menu">
-          <li ui-sref-active="active" ng-repeat="item in vm.accountMenu.items">
-            <a ui-sref="{{item.state}}" ng-bind="item.title"></a>
-          </li>
-          <li class="divider"></li>
-          <li>
-            <a href="/api/auth/signout" target="_self">Signout</a>
-          </li>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="/o-sazu/"><i class="fa fa-search" style="font-size: 23px;color: #1162b2;"></i></a>
+            </li>
+            <li>
+                <a href="/o-sazu/"><i class="fa fa-bars" style="font-size: 23px;color: #1162b2;"></i></a>
+            </li>
         </ul>
-      </li>
-    </ul>
-  </nav>
+    </nav>
+
+
+    <nav class="navbar-collapse" uib-collapse="!vm.isCollapsed" role="navigation" ng-show="vm.authentication.user">
+        <ul class="nav navbar-nav" ng-if="vm.menu.shouldRender(vm.authentication.user);"
+            ng-show="vm.authentication.user">
+            <li ng-repeat="item in vm.menu.items | orderBy: 'position'"
+                ng-if="item.shouldRender(vm.authentication.user);" ng-switch="item.type"
+                ng-class="{ dropdown: item.type === 'dropdown' }" ui-sref-active="active" class="{{item.class}}"
+                uib-dropdown="item.type === 'dropdown'">
+                <a ng-switch-when="dropdown" class="dropdown-toggle" uib-dropdown-toggle role="button">{{::item.title}}&nbsp;<span
+                        class="caret"></span></a>
+                <ul ng-switch-when="dropdown" class="dropdown-menu">
+                    <li ng-repeat="subitem in item.items | orderBy: 'position'"
+                        ng-if="subitem.shouldRender(vm.authentication.user);">
+                        <a ui-sref="{{subitem.state}}" ng-bind="subitem.title"></a>
+                    </li>
+                </ul>
+                <a ng-switch-default ui-sref="{{item.state}}" ng-bind="item.title"></a>
+            </li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right" ng-show="vm.authentication.user">
+            <li class="dropdown" uib-dropdown>
+                <a class="dropdown-toggle" uib-dropdown-toggle role="button">
+
+                    <span ng-bind="vm.authentication.user.displayName"></span> <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li ui-sref-active="active" ng-repeat="item in vm.accountMenu.items">
+                        <a ui-sref="{{item.state}}" ng-bind="item.title"></a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="/api/auth/signout" target="_self">Signout</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
 </div>
+

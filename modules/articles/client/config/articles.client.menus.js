@@ -1,3 +1,4 @@
+/*
 (function () {
   'use strict';
 
@@ -12,6 +13,7 @@
       title: 'Articles',
       state: 'articles',
       type: 'dropdown',
+        position: 3,
       roles: ['*']
     });
 
@@ -29,3 +31,4 @@
     });
   }
 }());
+*/

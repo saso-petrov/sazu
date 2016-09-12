@@ -1,0 +1,286 @@
+body {
+    background: #f7f7f7;
+}
+
+header {
+    font-family: "Source Sans Pro";
+}
+
+.navbar-inverse {
+    background: #f7f7f7;
+}
+
+
+.content {
+    margin-top: 140px;
+}
+
+@media (max-width: 768px) {
+    .content {
+        margin-top: 0;
+    }
+    .navbar-inverse {
+        background: transparent;
+    }
+
+}
+
+.navbar-fixed-top {
+    border: 0
+}
+
+.navbar-nav > li > a {
+    padding-top: 10px;
+    padding-bottom: 0;
+    line-height: 20px;
+}
+
+.nav > li > a {
+    position: relative;
+    display: block;
+    padding: 5px 15px;
+}
+
+
+.navbar-brand {
+    line-height: 120px;
+    height: 150px;
+    margin-right: 10px;
+}
+
+.navbar-inverse ul.navbar-nav {
+    margin-top: 45px;
+}
+
+.navbar-inverse .navbar-brand,
+.navbar-inverse .navbar-nav > li > a {
+    font-size: 17px;
+    color: #383838;
+    text-shadow: none;
+    text-transform: uppercase;
+    border-bottom: solid 4px transparent;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover {
+    color: #383838;
+    border-bottom: solid 4px #ff9c00;
+}
+
+.calendar {
+    width: 100%;
+    background: #1162b2;
+    color: white;
+    font-family: 'Source Sans Pro';
+    font-size: 18px
+}
+
+.calendar td.title {
+    font-family: 'Domine';
+}
+
+.calendar td {
+    padding: 15px 4px;
+    line-height: 22px
+}
+
+.calendar td:first-child {
+    padding-left: 30px;
+}
+
+.calendar td:last-child {
+    padding-right: 30px;
+}
+
+.footer {
+    background: #383838;
+    color: #f7f7f7
+}
+
+@media (min-width: 768px) {
+    /* carousel */
+    .carousel-indicators {
+        left: 145px;
+        bottom: 100px;
+        margin-left: 0px;
+        width: auto;
+
+    }
+
+    .carousel-indicators li {
+        border-radius: 21px;
+        width: 21px;
+        height: 21px;
+        background: rgba(255, 255, 255, 0.36);
+        border: 0;
+        margin: 5px;
+    }
+
+    .carousel-indicators .active {
+        border-radius: 21px;
+        width: 21px;
+        height: 21px;
+        background: #ff9c00;
+        border: 0;
+        margin: 5px;
+    }
+
+    .carousel-caption {
+        font-family: 'Domine';
+        width: 500px;
+        height: 310px;
+        padding: 50px;
+        text-align: left;
+        position: absolute;
+        top: 100px;
+        left: 100px;
+        background: #1162b2;
+        color: white;
+
+    }
+
+    .carousel-caption a h4 {
+        color: white;
+        font-size: 28px;
+    }
+
+    .carousel-caption a:hover {
+        text-decoration: none
+    }
+
+    .carousel-control {
+        display: none;
+    }
+
+    .carousel-img {
+        position: absolute;
+        top: 60px;
+        left: 500px;
+        width: 600px;
+    }
+
+    .portrait {
+        width: auto !important;
+        height: 550px !important;
+        left: 640px;
+    }
+
+    .listhome {
+        height:580px;
+    }
+
+    .listhome h4 {
+        font-family: Domine;font-size: 29px;
+        line-height: 1.62;
+        color: #1162b2; text-decoration:underline;padding:10px 0;cursor:pointer
+    }
+}
+
+@media (max-width: 767px) {
+    /* carousel */
+    .carousel-indicators {
+        left: 15px;
+        bottom: 10px;
+        margin-left: 0px;
+        width: auto;
+
+    }
+
+    .carousel-indicators li {
+        border-radius: 21px;
+        width: 21px;
+        height: 21px;
+        background: rgba(255, 255, 255, 0.36);
+        border: 0;
+        margin: 5px;
+    }
+
+    .carousel-indicators .active {
+        border-radius: 21px;
+        width: 21px;
+        height: 21px;
+        background: #ff9c00;
+        border: 0;
+        margin: 5px;
+    }
+
+    .carousel-caption {
+        font-family: 'Domine';
+        width: 100%;
+        height: 205px;
+        padding: 20px;
+        text-align: left;
+        position: absolute;
+        top: 205px;
+        left: 0;
+        background: #1162b2;
+        color: white;
+
+    }
+
+    .carousel-caption a h4 {
+        color: white;
+        font-size: 20px;
+    }
+
+    .carousel-caption a:hover {
+        text-decoration: none
+    }
+
+    .carousel-control {
+        display: none;
+    }
+
+    .carousel-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+/*
+    .portrait {
+        width: auto !important;
+        height: 550px !important;
+        left: 640px;
+    }
+    */
+
+    .listhome {
+        height:380px;
+    }
+
+    .listhome h4 {
+        font-family: Domine;font-size: 20px;
+        line-height: 1.62;
+        color: #1162b2; text-decoration:underline;padding:10px 0;cursor:pointer
+    }
+}
+
+.footerlink{
+    opacity: 0.45;
+    font-family: 'Source Sans Pro';
+    font-size: 16px;
+    line-height: 2.2;
+    letter-spacing: 0.9px;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+.footertxt{
+    opacity: 0.45;
+    font-family: 'Source Sans Pro';
+    font-size: 14px;
+
+    letter-spacing: 0.9px;
+    color: #ffffff;
+
+}
+
+.footer ul {
+    list-style: none;
+}
+
+a.submenu:hover{
+    text-decoration:none;
+    border-bottom:1px solid #ff9c00
+}
+

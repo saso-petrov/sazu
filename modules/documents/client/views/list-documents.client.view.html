@@ -1,0 +1,22 @@
+<section>
+  <div class="page-header">
+    <h1>Documents</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="document in vm.documents" ui-sref="documents.view({ documentId: document._id })" class="list-group-item">
+      <small class="list-group-item-text" style="display:none">
+        Posted on
+        <span ng-bind="document.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="document.user" ng-bind="document.user.displayName"></span>
+        <span ng-if="!document.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="document.title"></h4>
+        <h5 class="list-group-item-heading" ng-bind="'http://www.sazu.si/'+document.slug"></h5>
+<!--      <p class="list-group-item-text" ng-bind-html="document.content | unsafe"></p> -->
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="vm.documents.$resolved && !vm.documents.length">
+    No documents yet, why don't you <a ui-sref="documents.create">create one</a>?
+  </div>
+</section>

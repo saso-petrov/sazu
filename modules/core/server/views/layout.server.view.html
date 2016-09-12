@@ -32,6 +32,11 @@
   <link href="{{favicon}}" rel="shortcut icon" type="image/x-icon">
 
   <!-- Application CSS Files -->
+    <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&subset=latin,latin-ext" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Domine:400,700&subset=latin,latin-ext" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto:700,400">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic&subset=latin,latin-ext">
   {% for cssFile in cssFiles %}<link rel="stylesheet" href="{{cssFile}}">{% endfor %}
 </head>
 
@@ -42,6 +47,7 @@
       {% block content %}{% endblock %}
     </section>
   </section>
+  <footer class="footer" ng-include="'/modules/core/client/views/footer.client.view.html'"></footer>
 
   <!--Embedding The User Object-->
   <script type="text/javascript">
@@ -49,7 +55,7 @@
   </script>
 
   <!--Load The Socket.io File-->
-  <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+ <!-- <script type="text/javascript" src="/socket.io/socket.io.js"></script> -->
 
   <!--Application JavaScript Files-->
   {% for jsFile in jsFiles %}<script type="text/javascript" src="{{jsFile}}"></script>{% endfor %}

@@ -1,0 +1,80 @@
+<div class="container" ng-controller="FooterController as vm">
+    <div class="container" class="footer">
+        <div class="row">
+            <div class="col-lg-5 col-xs-12">
+                <a ui-sref="home" class="navbar-brand"><img src="/modules/core/client/img/brand/logo.png"
+                                                            alt="SAZU"/></a>
+
+                <div style="float:left;padding-bottom:30px;">
+                    <ul>
+                        <li>
+                            <a href="/o-sazu/" class="footerlink">O sazu</a>
+                        </li>
+                        <li>
+                            <a href="/o-sazu/" class="footerlink">Člani in razredi</a>
+                        </li>
+                        <li>
+                            <a href="/o-sazu/" class="footerlink">Biblioteka in publikacije</a>
+                        </li>
+                        <li>
+                            <a href="/o-sazu/" class="footerlink">Aktivnosti</a>
+                        </li>
+                        <li>
+                            <a href="/o-sazu/" class="footerlink">Mednarodno sodelovanje</a>
+                        </li>
+                        <li>
+                            <a href="/o-sazu/" class="footerlink">Arhiv</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 col-xs-12 footertxt">
+                Slovenska akademija znanosti<br/>
+                 in umetnosti (SAZU) <br/>
+                Novi trg 3<br/>
+                 1000 Ljubljana<br/><br/>
+                Tel.: 01 47 06 100 <br/>
+                Faks: 01 42 53 423<br/>
+                <br/>
+                 El. pošta: sazu@sazu.si<br/>
+                <br/>
+                &copy; 2016 SAZU, vse pravice pridržane
+            </div>
+            <div class="col-lg-4 col-xs-12">
+
+                <ul class="nav navbar-nav navbar-right" ng-hide="vm.authentication.user">
+                    <!--
+                    <li ui-sref-active="active">
+                        <a ui-sref="authentication.signup">Sign Up</a>
+                    </li>
+                    <li class="divider-vertical"></li>
+                    -->
+                    <li ui-sref-active="active">
+                        <a ui-sref="authentication.signin">Sign In</a>
+                    </li>
+                </ul>
+                <!--
+                <ul class="nav navbar-nav navbar-right" ng-show="vm.authentication.user">
+                    <li class="dropdown" uib-dropdown>
+                        <a class="dropdown-toggle user-header-dropdown-toggle" uib-dropdown-toggle role="button">
+                            <img ng-src="{{vm.authentication.user.profileImageURL}}"
+                                 alt="{{vm.authentication.user.displayName}}" class="header-profile-image"/>
+                            <span ng-bind="vm.authentication.user.displayName"></span> <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li ui-sref-active="active" ng-repeat="item in vm.accountMenu.items">
+                                <a ui-sref="{{item.state}}" ng-bind="item.title"></a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="/api/auth/signout" target="_self">Signout</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                -->
+            </div>
+
+        </div>
+    </div>
+</div>

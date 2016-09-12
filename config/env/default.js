@@ -2,12 +2,12 @@
 
 module.exports = {
   app: {
-    title: 'MEAN.JS',
+    title: 'SAZU - Slovenska Akademija Znanosti in Umetnosti - sazu.si',
     description: 'Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js',
     keywords: 'mongodb, express, angularjs, node.js, mongoose, passport',
     googleAnalyticsTrackingID: process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'GOOGLE_ANALYTICS_TRACKING_ID'
   },
-  port: process.env.PORT || 3000,
+  port: process.env.PORT || 3005,
   host: process.env.HOST || '0.0.0.0',
   templateEngine: 'swig',
   // Session Cookie settings
@@ -36,8 +36,8 @@ module.exports = {
     p3p: 'ABCDEF',
     xssProtection: true
   },
-  logo: 'modules/core/client/img/brand/logo.png',
-  favicon: 'modules/core/client/img/brand/favicon.ico',
+  logo: 'modules/core/client/img/brand/logo.gif',
+  favicon: 'modules/core/client/img/brand/sazu.ico',
   uploads: {
     profileUpload: {
       dest: './modules/users/client/img/profile/uploads/', // Profile upload destination path
